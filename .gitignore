@@ -12,3 +12,5 @@ doc/__build/*
 build/
 locale/
 pip-log.txt
+RELEASE-VERSION
+

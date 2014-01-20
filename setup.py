@@ -10,10 +10,19 @@ except ImportError:
     from setuptools import setup, find_packages
 
 import media_bundler
+import sys
+
+if 'sdist' in sys.argv:
+    import mmf_release_tools
+    version = mmf_release_tools.generate_release_version(media_bundler.__version__, __file__)
+    mmf_release_tools.write_release_version(version)
+else:
+    with open("RELEASE-VERSION", "r") as f:
+        version = f.readlines()[0].strip()
 
 setup(
     name='django-media-bundler',
-    version=media_bundler.__version__,
+    version=version,
     author='Reid Kleckner',
     author_email='rnk@mit.edu',
     description="Django application that bundles your Javascript/CSS, "
